@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="edu.shanda.dao.DepartmentDAO">
+    <insert id="modifySaveDepartment">
+        insert into t_department (number,name)
+        values (#{number},#{name})
+    </insert>
+
+    <select id="queryAllDepartments" resultType="Department">
+        select * from t_department
+    </select>
+
+    <update id="modifyUpdateDepartment">
+        update t_department
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="number != null">
+                number = #{number}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="queryDepartmentForUpdate" resultType="Department">
+        select * from t_department
+        where id = #{id}
+    </select>
+
+</mapper>
